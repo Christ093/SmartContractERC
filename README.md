@@ -11,8 +11,6 @@
 ## Contract Structure
 
 - **ERC20**: The contract inherits from OpenZeppelin's `ERC20` standard, which provides standard functions like `transfer`, `balanceOf`, `approve`, etc.
-- **Owner**: The contract has an owner (set to the address deploying the contract) who has special permissions, such as minting new tokens.
-- **Events**: A `Burn` event is emitted whenever tokens are burned, allowing external systems to track burns.
 
 ## Functions
 
