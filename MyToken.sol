@@ -32,7 +32,14 @@ contract MyToken is ERC20 {
     // Function to burn tokens (reduce supply)
     function burn(uint256 amount) public {
         require(amount > 0, "Amount must be greater than zero");
+        require(balanceOf(msg.sender) >= amount, "Insufficient balance to burn");
         _burn(msg.sender, amount); // Burn tokens from the sender
         emit Burn(msg.sender, amount); // Log the burn event
+    }
+
+    // Optional function to transfer ownership
+    function transferOwnership(address newOwner) public onlyOwner {
+        require(newOwner != address(0), "New owner is the zero address");
+        owner = newOwner;
     }
 }
