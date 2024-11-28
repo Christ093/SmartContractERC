@@ -66,7 +66,7 @@ This function allows users to transfer tokens from their address to another addr
 ### 1. Deploy the contract:
 1. Copy the contract code into Remix IDE.
 2. Compile the contract using the Solidity compiler in Remix.
-3. Deploy the contract to the Remix VM or an Ethereum test network.
+3. Deploy the contract to the Remix VM.
 4. After deployment, interact with the contract functions from the **Deployed Contracts** section.
 
 ### 2. Interacting with the contract
