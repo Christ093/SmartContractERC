@@ -61,39 +61,6 @@ function transfer(address to, uint256 amount) public override returns (bool)
 
 This function allows users to transfer tokens from their address to another address. It overrides the standard `ERC20` transfer function from OpenZeppelin.
 
-### `approve(address spender, uint256 amount)`
-
-```solidity
-function approve(address spender, uint256 amount) public override returns (bool)
-```
-- **Parameters**:
-  - `spender`: The address that will be allowed to spend tokens from the caller's balance.
-  - `amount`: The amount of tokens that the spender is allowed to transfer.
-- **Access**: Public function accessible to all users.
-
-This function allows a user to approve a third party (spender) to spend a certain amount of tokens on their behalf.
-
-### `transferFrom(address from, address to, uint256 amount)`
-
-```solidity
-function transferFrom(address from, address to, uint256 amount) public override returns (bool)
-```
-- **Parameters**:
-  - `from`: The address from which tokens will be transferred.
-  - `to`: The recipient address.
-  - `amount`: The number of tokens to transfer.
-- **Access**: Public function accessible to all users.
-
-This function allows a third party (who has been approved) to transfer tokens from the `from` address to the `to` address.
-
-## Events
-
-### `Burn(address indexed from, uint256 value)`
-
-This event is emitted whenever tokens are burned. It includes:
-- `from`: The address from which the tokens were burned.
-- `value`: The number of tokens burned.
-
 ## Deployment and Usage
 
 ### 1. Deploy the contract:
