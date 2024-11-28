@@ -59,10 +59,14 @@ This event is emitted whenever tokens are burned. It includes:
 - `from`: The address from which the tokens were burned.
 - `value`: The number of tokens burned.
 
-## Deployment and Usage
+### Deployment and Usage
+- **Remix IDE**: Use Remix for compiling and deploying the contract. Visit [Remix IDE](https://remix.ethereum.org/) to start. During deployment, you’ll need to specify the token’s name, symbol, and initial supply.
 
-### 1. Deploy the contract
-To deploy the contract, you need to use a Solidity-compatible environment like [Remix](https://remix.ethereum.org/), Hardhat, or Truffle. During deployment, you’ll need to specify the token’s name, symbol, and initial supply.
+### 1. Deploy the contract:
+1. Copy the contract code into Remix IDE.
+2. Compile the contract using the Solidity compiler in Remix.
+3. Deploy the contract to the Remix VM.
+4. After deployment, interact with the contract functions from the **Deployed Contracts** section.
 
 ### 2. Interacting with the contract
 Once deployed, you can interact with the contract by calling the available functions:
