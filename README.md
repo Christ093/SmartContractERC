@@ -74,8 +74,6 @@ function transfer(address to, uint256 amount) public override returns (bool)
   - `amount`: The number of tokens to transfer.
 - **Access**: Public—accessible to all users.
 
-**Description**: Facilitates the transfer of tokens from one user to another. This function overrides the standard OpenZeppelin `ERC20` `transfer` function.
-
 ---
 
 ## Deployment Guide
@@ -114,12 +112,3 @@ After deployment, use the following functions:
 
 The `mint` function is restricted to the contract owner. If a non-owner tries to execute it, the transaction will revert with an error. Ownership is automatically assigned to the deployer of the contract, but ownership can be transferred if the contract is updated to include a transfer ownership feature.
 
----
-
-## Summary
-
-`MyToken` is a secure, flexible ERC20 token with minting, burning, and ownership controls. It leverages OpenZeppelin’s implementation for standard ERC20 functionality, ensuring security and compatibility with the broader Ethereum ecosystem.
-
---- 
-
-Let me know if you need any further improvements or customization!
