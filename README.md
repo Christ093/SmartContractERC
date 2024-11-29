@@ -14,7 +14,7 @@
 
 ## Contract Structure
 
-**ERC20**: The contract inherits from OpenZeppelin's `ERC20` standard, which provides standard functions like `transfer`, `balanceOf`, `approve`, etc.
+*ERC20*: The contract inherits from OpenZeppelin's `ERC20` standard, which provides standard functions like `transfer`, `balanceOf`, `approve`, etc.
 ---
 
 ## Functions
