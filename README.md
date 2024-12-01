@@ -1,55 +1,87 @@
-# Degen (DGN) ERC-20 Token
+### Step 1: Set Up Remix IDE
 
-This repository contains the smart contract for the **Degen** ERC-20 token, with the symbol **DGN**. It is designed to be used in a game platform where players can earn tokens as rewards, transfer them to others, redeem them for items, and burn them when no longer needed.
-
-## Features
-
-- **ERC-20 Compliant**: The contract follows the ERC-20 standard, ensuring compatibility with wallets, exchanges, and other platforms.
-- **Minting**: The owner can mint new tokens and distribute them as rewards to players.
-- **Transferring Tokens**: Players can transfer tokens to other players.
-- **Redeeming Tokens**: Players can redeem their tokens for items in the in-game store. Tokens are burned after redemption.
-- **Burning Tokens**: Players can burn tokens that they own if they no longer need them.
-- **Checking Token Balance**: Players can check their token balance at any time.
-
-## Contract Overview
-
-- **Name**: Degen
-- **Symbol**: DGN
-- **Decimals**: 18 (default for ERC-20 tokens)
-- **Owner**: The address that deploys the contract is the owner by default.
-- **Initial Supply**: The initial supply is minted during deployment and assigned to the deployer's address.
-
-## Contract Functions
-
-1. **constructor(uint256 _initialSupply)**
-   - Initializes the token with the name "Degen", the symbol "DGN", and mints an initial supply of tokens to the deployer's address.
-
-2. **mint(address to, uint256 amount)**
-   - **Only the owner** can mint new tokens to a specified address. This function is used to reward players.
-   - Emits a `Mint` event when new tokens are minted.
-
-3. **transfer(address recipient, uint256 amount)**
-   - Allows players to transfer tokens to another player. This follows the standard ERC-20 transfer function.
-
-4. **redeem(uint256 amount)**
-   - Players can redeem their tokens for in-game items. Upon redemption, the tokens are burned.
-   - Emits a `Redeem` event when tokens are redeemed.
-
-5. **burn(uint256 amount)**
-   - Players can burn their own tokens when they no longer need them. This reduces the total supply.
-   - Emits a `Burn` event when tokens are burned.
-
-6. **balanceOf(address account)**
-   - Allows players to check their current token balance. This function is inherited from the ERC-20 standard.
-
-7. **transferOwnership(address newOwner)**
-   - Allows the current owner to transfer ownership of the contract to a new address.
-
-## Deployment Instructions
-
-1. **Compile the Contract**
-   - Compile the contract using a Solidity compiler (e.g., Remix IDE or Truffle).
+1. **Go to Remix IDE**:
+   - Open [Remix IDE](https://remix.ethereum.org/) in your browser.
    
-2. **Deploy the Contract**
-   - Deploy the contract to an Ethereum network (testnet).
-   - Provide the initial supply in the constructor. 
+2. **Create a New File**:
+   - In Remix, click on the **File Explorers** panel (on the left side).
+   - Click the `+` button to create a new file named `DegenToken.sol`.
+
+3. **Paste the Contract Code**:
+   - Copy and paste the `Degen` ERC-20 contract (the one we discussed earlier) into the new `DegenToken.sol` file.
+
+4. **Install OpenZeppelin Contracts**:
+   - Remix comes with built-in OpenZeppelin contracts, so you don't need to manually install them.
+   - Import the ERC-20 contract by adding the following line at the top of your Solidity file (if not already done):
+     ```solidity
+     import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+     ```
+     
+### Step 2: Compile the Contract
+
+1. **Select the Compiler**:
+   - In the **Solidity Compiler** tab (on the left side), choose **Solidity Compiler** and make sure the version is set to **0.8.28** or higher (as specified in the contract).
+   
+2. **Compile the Contract**:
+   - Click the **Compile DegenToken.sol** button.
+   - If there are no errors, the contract will be compiled successfully.
+
+### Step 3: Deploy the Contract on Avalanche Fuji C-Chain Testnet
+
+#### Setting Up MetaMask for Avalanche Fuji C-Chain Testnet
+
+1. **Install MetaMask**:
+   - If you don't have MetaMask installed, go to the [MetaMask website](https://metamask.io/) and install the extension for your browser.
+   
+2. **Set Up Avalanche Fuji C-Chain Testnet on MetaMask**:
+   - Open MetaMask and click on the network dropdown (usually showing "Ethereum Mainnet").
+   - Click on **Add Network** and enter the following details for Avalanche Fuji C-Chain:
+     - **Network Name**: Avalanche Fuji C-Chain
+     - **RPC URL**: `https://api.avax-test.network/ext/bc/C/rpc`
+     - **Chain ID**: `43113`
+     - **Currency Symbol**: `AVAX`
+     - **Block Explorer URL (Optional)**: `https://testnet.snowtrace.io/`
+
+   - Click **Save**.
+
+3. **Get Test AVAX on Fuji**:
+   - To deploy on the Avalanche Fuji testnet, you'll need some test AVAX. You can get test AVAX from the [Avalanche Fuji faucet](https://faucet.avax.network/).
+   - After adding the Avalanche Fuji network in MetaMask, go to the faucet, enter your MetaMask wallet address, and request test AVAX.
+
+#### Deploying the Contract Using Remix IDE
+
+1. **Connect Remix to MetaMask**:
+   - In Remix, go to the **Deploy & Run Transactions** tab (on the left side).
+   - Select **Injected Web3** as the environment. This will allow Remix to connect to MetaMask and the Avalanche Fuji C-Chain network.
+   - Your MetaMask wallet should prompt you to connect. Approve the connection.
+
+2. **Select the Contract and Constructor Arguments**:
+   - In the **Deploy & Run Transactions** tab, select the contract `Degen` from the dropdown.
+   - For the **constructor arguments**, enter the initial supply of tokens. 
+
+3. **Deploy the Contract**:
+   - Click **Deploy**. MetaMask will ask you to confirm the transaction. After confirmation, the contract will be deployed to the Avalanche Fuji testnet.
+   - Once deployed, Remix will show the contract address on the top of the **Deployed Contracts** section.
+
+### Step 4: Interact with the Contract on Snowtrace
+
+1. **View the Contract on Snowtrace**:
+   - After deployment, you can view the contract details on the **Snowtrace Testnet**.
+   - Go to [Snowtrace Testnet](https://testnet.snowtrace.io/).
+   - Search for the contract address that Remix displayed (you can find it in the **Deployed Contracts** section in Remix).
+   - You should see your deployed contract’s details.
+
+### Step 5: Additional Interaction via Remix
+
+1. **Mint Tokens**:
+   - In Remix, under **Deployed Contracts**, expand the contract and find the `mint` function.
+   - Input an address (for the recipient) and the amount of tokens to mint, and click **transact**. MetaMask will prompt for confirmation.
+   
+2. **Transfer Tokens**:
+   - Use the `transfer` function in Remix to send tokens between addresses. Specify the recipient's address and the amount of tokens to transfer.
+   
+3. **Burn Tokens**:
+   - Use the `burn` function to burn tokens from your own address.
+   
+4. **Redeem Tokens**:
+   - Players can redeem tokens by calling the `redeem` function in Remix. This will burn the tokens as part of the redemption process.
