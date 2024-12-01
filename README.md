@@ -1,114 +1,55 @@
-# SmartContractERC
+# Degen (DGN) ERC-20 Token
 
-`MyToken` is a custom ERC20 token contract built using Solidity and OpenZeppelin’s ERC20 implementation. The token includes features for minting new tokens, burning existing tokens, and owner-only access for specific functions.
-
----
+This repository contains the smart contract for the **Degen** ERC-20 token, with the symbol **DGN**. It is designed to be used in a game platform where players can earn tokens as rewards, transfer them to others, redeem them for items, and burn them when no longer needed.
 
 ## Features
 
-1. **Minting**: The contract owner can create new tokens and assign them to any address.  
-2. **Burning**: Any user can burn their tokens, reducing the overall supply.  
-3. **Owner-only functions**: Specific functions, such as minting, are restricted to the contract owner.
+- **ERC-20 Compliant**: The contract follows the ERC-20 standard, ensuring compatibility with wallets, exchanges, and other platforms.
+- **Minting**: The owner can mint new tokens and distribute them as rewards to players.
+- **Transferring Tokens**: Players can transfer tokens to other players.
+- **Redeeming Tokens**: Players can redeem their tokens for items in the in-game store. Tokens are burned after redemption.
+- **Burning Tokens**: Players can burn tokens that they own if they no longer need them.
+- **Checking Token Balance**: Players can check their token balance at any time.
 
----
+## Contract Overview
 
-## Contract Structure
+- **Name**: Degen
+- **Symbol**: DGN
+- **Decimals**: 18 (default for ERC-20 tokens)
+- **Owner**: The address that deploys the contract is the owner by default.
+- **Initial Supply**: The initial supply is minted during deployment and assigned to the deployer's address.
 
-*ERC20*: The contract inherits from OpenZeppelin's `ERC20` standard, which provides standard functions like `transfer`, `balanceOf`, `approve`, etc.
----
+## Contract Functions
 
-## Functions
+1. **constructor(uint256 _initialSupply)**
+   - Initializes the token with the name "Degen", the symbol "DGN", and mints an initial supply of tokens to the deployer's address.
 
-### **Constructor**
+2. **mint(address to, uint256 amount)**
+   - **Only the owner** can mint new tokens to a specified address. This function is used to reward players.
+   - Emits a `Mint` event when new tokens are minted.
 
-```solidity
-constructor(string memory _name, string memory _symbol, uint256 _initialSupply)
-```
+3. **transfer(address recipient, uint256 amount)**
+   - Allows players to transfer tokens to another player. This follows the standard ERC-20 transfer function.
 
-- **Parameters**:
-  - `_name`: The name of the token (e.g., "MyToken").
-  - `_symbol`: The token's symbol (e.g., "MTK").
-  - `_initialSupply`: The initial supply of tokens, minted to the deployer's address.
+4. **redeem(uint256 amount)**
+   - Players can redeem their tokens for in-game items. Upon redemption, the tokens are burned.
+   - Emits a `Redeem` event when tokens are redeemed.
 
-**Description**: Initializes the token with a name, symbol, and an initial supply. The deployer is set as the contract owner.
+5. **burn(uint256 amount)**
+   - Players can burn their own tokens when they no longer need them. This reduces the total supply.
+   - Emits a `Burn` event when tokens are burned.
 
----
+6. **balanceOf(address account)**
+   - Allows players to check their current token balance. This function is inherited from the ERC-20 standard.
 
-### **Minting Tokens**
+7. **transferOwnership(address newOwner)**
+   - Allows the current owner to transfer ownership of the contract to a new address.
 
-```solidity
-function mint(address to, uint256 amount) public onlyOwner
-```
+## Deployment Instructions
 
-- **Parameters**:
-  - `to`: The recipient address for the newly minted tokens.
-  - `amount`: The number of tokens to mint.
-- **Access**: Restricted to the contract owner.
-
-**Description**: Allows the owner to mint tokens and assign them to a specified address. Only the owner can execute this function.
-
----
-
-### **Burning Tokens**
-
-```solidity
-function burn(uint256 amount) public
-```
-
-- **Parameters**:
-  - `amount`: The number of tokens to burn from the sender's balance.
-- **Access**: Public—any user can call this function.
-
-**Description**: Allows users to destroy their own tokens, reducing the total supply. Each burn is logged with a `Burn` event.
-
----
-
-### **Transferring Tokens**
-
-```solidity
-function transfer(address to, uint256 amount) public override returns (bool)
-```
-
-- **Parameters**:
-  - `to`: The recipient's address.
-  - `amount`: The number of tokens to transfer.
-- **Access**: Public—accessible to all users.
-
----
-
-## Deployment Guide
-
-### **1. Deploy the Contract**
-
-1. Open the contract in **Remix IDE** or any Solidity-compatible development environment.  
-2. Compile the contract using the Solidity compiler (ensure the version is `^0.8.0`).  
-3. Deploy the contract to your preferred blockchain network (e.g., Remix VM, testnets, or mainnet).  
-4. Provide the required constructor arguments during deployment:
-   - `_name`: The token name (e.g., "MyToken").
-   - `_symbol`: The token symbol (e.g., "MTK").
-   - `_initialSupply`: The initial token supply (e.g., `1000000` for 1,000,000 tokens).
-
----
-
-### **2. Interact with the Contract**
-
-After deployment, use the following functions:
-
-- **Minting Tokens**:
-  - Call `mint(address to, uint256 amount)` to create new tokens (only accessible by the owner).  
-  - Example: Mint 1,000 tokens to `0x123...abc`.  
-
-- **Burning Tokens**:
-  - Call `burn(uint256 amount)` to destroy tokens from your own balance.  
-  - Example: Burn 500 tokens from your account.  
-
-- **Transferring Tokens**:
-  - Call `transfer(address to, uint256 amount)` to send tokens to another address.  
-  - Example: Transfer 200 tokens to `0x456...def`.  
-
----
-
-### **3. Owner-Only Functions**
-
-The `mint` function is restricted to the contract owner. If a non-owner tries to execute it, the transaction will revert with an error. Ownership is automatically assigned to the deployer of the contract, but ownership can be transferred if the contract is updated to include a transfer ownership feature.
-
+1. **Compile the Contract**
+   - Compile the contract using a Solidity compiler (e.g., Remix IDE or Truffle).
+   
+2. **Deploy the Contract**
+   - Deploy the contract to an Ethereum network (testnet).
+   - Provide the initial supply in the constructor. 
