@@ -5,14 +5,14 @@ pragma solidity ^0.8.28;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol"; 
 
 // Define the contract for the token, inheriting from ERC20
-contract MyToken is ERC20 {
+contract Degen is ERC20 {
     address public owner;
 
     // Events to log transfers and burns
     event Burn(address indexed from, uint256 value);
 
-    // Constructor to initialize the token
-    constructor(string memory _name, string memory _symbol, uint256 _initialSupply) ERC20(_name, _symbol) {
+    // Constructor to initialize the token with name "Degen", symbol "DGN" and initial supply
+    constructor(uint256 _initialSupply) ERC20("Degen", "DGN") {
         _mint(msg.sender, _initialSupply); // Mint initial supply to the deployer
         owner = msg.sender; // Set the owner as the deployer
     }
